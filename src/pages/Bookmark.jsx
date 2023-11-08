@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress, Stack } from "@mui/material";
+import { Backdrop, CircularProgress, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import PostCard from "../component/PostCard";
 import axios from "axios";
@@ -13,10 +13,12 @@ export default function Bookmark(){
     function fetchItem(){
         setLoading(true)
         let id = JSON.parse(localStorage.getItem('key'))
-        id.map(async (x)=>{
-            let info =  await axios.get(`https://api.quotable.io/quotes/${x}`)
-            setItem(item=>[...item,info.data])
-        })
+        if(id){
+            id.map(async (x)=>{
+                let info =  await axios.get(`https://api.quotable.io/quotes/${x}`)
+                setItem(item=>[...item,info.data])
+            })
+        }  
         setLoading(false)
     }
 
@@ -40,9 +42,11 @@ useEffect(()=>{
           <Stack gap="12px">
           {
                
-               item && item.map((x)=>(
+               item.length>0 ? item?.map((x)=>(
                  <PostCard data={x} key={x._id}/>
                ))
+               :
+               !loading && <Typography sx={{color:"white",fontSize:"20px",marginTop:"16px"}}>No Items in bookmark</Typography>
             }
           </Stack>
         </Stack>
