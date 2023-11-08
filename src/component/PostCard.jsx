@@ -26,7 +26,7 @@ export default function PostCard({data}){
     let array = []
     if(item){
       item.map((x)=>{
-        if(x!=id)
+        if(x!==id)
         array.push(x)
       })
     }
@@ -34,7 +34,7 @@ export default function PostCard({data}){
     }
     
     useEffect(()=>{
-        let  item = JSON.parse(localStorage.getItem('key')).includes(data._id)
+        let  item = JSON.parse(localStorage.getItem('key'))?.includes(data._id)
         if(item){
             setSelected(true)
         }

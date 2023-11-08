@@ -1,4 +1,4 @@
-import { Alert, Backdrop, Button, CircularProgress, FormControl, IconButton, InputLabel, MenuItem, Select, Snackbar, Stack, Typography } from "@mui/material";
+import { Alert, Backdrop, Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, Snackbar, Stack} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAllpost,
@@ -8,7 +8,6 @@ import {
 } from "../features/post/postSlice";
 import { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
-import { Bookmark } from "@mui/icons-material";
 import PostCard from "../component/PostCard";
 import Navbar from "../component/Navbar";
 
@@ -78,7 +77,7 @@ export default function Home() {
                     }}
                 >
                     {
-                        tagList.map((x)=>(
+                        tagList?.map((x)=>(
                             <MenuItem key={x._id} value={x.name}>{x.name}</MenuItem>
                         ))
                     }
